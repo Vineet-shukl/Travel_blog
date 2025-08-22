@@ -1,0 +1,37 @@
+<!-- blog/templates/blog/confirm_delete.html -->
+{% extends 'base.html' %}
+
+{% block title %}Delete Post - TravelBlog{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Confirm Deletion
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Are you sure you want to delete the post titled:</p>
+                    <h4 class="text-center mb-4">"{{ post.title }}"</h4>
+                    <p class="text-muted text-center">This action cannot be undone.</p>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash me-2"></i>Yes, Delete This Post
+                            </button>
+                            <a href="{% url 'post_detail' post.id %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-times me-2"></i>Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
